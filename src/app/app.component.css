@@ -1,0 +1,64 @@
+:root {
+    --terrain-hex: #fcfdfe;
+}
+
+.hex-row { clear: left; }
+.hex-row.shift-1 { margin-left: -53px; }
+.hex-row.shift-2 { margin-left: -106px; }
+.hex-row.shift-3 { margin-left: -159px; }
+
+.hex:before {
+    content: " ";
+    width: 0; height: 0;
+    border-bottom: 30px solid var(--terrain-hex);
+    border-left: 52px solid transparent;
+    border-right: 52px solid transparent;
+    position: absolute;
+    top: -30px;
+}
+
+.hex {
+    float: left;
+    margin-left: 3px;
+    margin-bottom: 4px;
+
+    margin-top: 30px;
+    width: 104px;
+    height: 60px;
+    background-color: var(--terrain-hex);
+    position: relative;
+}
+
+.hex:after {
+    content: "";
+    width: 0;
+    position: absolute;
+    bottom: -30px;
+    border-top: 30px solid var(--terrain-hex);
+    border-left: 52px solid transparent;
+    border-right: 52px solid transparent;
+}
+
+.hex.grain { --terrain-hex: #f0ad00; }
+.hex.brick { --terrain-hex: #9c4300; }
+.hex.lumber { --terrain-hex: #517d19; }
+.hex.wool { --terrain-hex: #23C577; }
+.hex.ore { --terrain-hex: #7b6f83; }
+
+.token {
+    font-size: 2em;
+    text-align: center;
+    line-height: 2;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    margin: 0 auto;
+}
+.token.red { color: red; }
