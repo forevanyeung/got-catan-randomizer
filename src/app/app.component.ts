@@ -10,21 +10,21 @@ export class AppComponent {
   hexMap = [];
 
   ngOnInit() {
-    this.hexMap = this.defaultMap;
+    this.default();
   }
 
   /* 4-player */
   rows = [4,5,6,6]
-  tokens = [
-    2,3,3,3,4,4,4,5,5,6,6,8,8,9,9,10,10,10,11,11,12
+  dTokens = [
+    5,6,5,8,6,4,9,10,11,3,9,11,3,8,4,10,12,3,10,4,2
   ]
-  resources = [
-    "grain","grain","grain","grain",
-    "brick","brick","brick","brick",
-    "lumber","lumber","lumber","lumber",
-    "wool","wool","wool","wool",
-    "ore","ore","ore","ore","ore"
+  dResources = [
+    "ore","wool","brick","grain",
+    "ore","brick","grain","wool","lumber",
+    "wool","lumber","wool","ore","lumber","ore",
+    "grain","lumber","brick","grain","brick","ore"
   ]
+
   ports = [
     "grain",
     "brick",
@@ -33,15 +33,9 @@ export class AppComponent {
     "ore"
   ]
 
-  defaultMap = [
-    [[5,"ore"],[6,"wool"],[5,"brick"],[8,"grain"]],
-    [[6,"ore"],[4,"brick"],[9,"grain"],[10,"wool"],[11,"lumber"]],
-    [[3,"wool"],[9,"lumber"],[11,"wool"],[3,"ore"],[8,"lumber"],[4,"ore"]],
-    [[10,"grain"],[12,"lumber"],[3,"brick"],[10,"grain"],[4,"brick"],[2,"ore"]]
-  ]
-
   shuffleArray(array) {
-    var m = array.length, t, i;
+    let nArr = [...array];
+    var m = nArr.length, t, i;
 
     // While there remain elements to shuffle
     while (m) {
@@ -49,20 +43,20 @@ export class AppComponent {
       i = Math.floor(Math.random() * m--);
 
       // And swap it with the current element.
-      t = array[m];
-      array[m] = array[i];
-      array[i] = t;
+      t = nArr[m];
+      nArr[m] = nArr[i];
+      nArr[i] = t;
     }
 
-    return array;
+    return nArr;
   }
 
-  combineHexes(tokens, resoures) {
-    if(tokens.length != resoures.length) { console.log("There is an issue with the two input arrays, sizes are not equal."); }
+  combineHexes(tokens, resources) {
+    if(tokens.length != resources.length) { console.log("There is an issue with the two input arrays, sizes are not equal."); }
     
     let combined = [];
-    for (let i = 0; i < this.tokens.length; i++) {
-      combined.push([this.tokens[i],this.resources[i]]);
+    for (let i = 0; i < tokens.length; i++) {
+      combined.push([tokens[i],resources[i]]);
     }
 
     return combined;
@@ -71,9 +65,9 @@ export class AppComponent {
   fillMapWithHexes(hexes, rows) {
     let map = [];
 
-    for(let i = 0; i < this.rows.length; i++) {
+    for(let i = 0; i < rows.length; i++) {
       let tempArr = []
-      for(let ii = 0; ii < this.rows[i]; ii++) {
+      for(let ii = 0; ii < rows[i]; ii++) {
         tempArr.push(hexes.shift());
       }
       map.push(tempArr);
@@ -85,16 +79,18 @@ export class AppComponent {
   randomize() {
     console.log("randomize!");
 
-    this.resources = this.shuffleArray(this.resources);
-    console.log(this.resources);
+    let nResources = this.shuffleArray(this.dResources);
 
-    let hexes = this.combineHexes(this.tokens, this.resources);
-
+    let hexes = this.combineHexes(this.dTokens, nResources);
     let map = this.fillMapWithHexes(hexes, this.rows);
     this.hexMap = map;
   }
 
   default() {
-    this.hexMap = this.defaultMap;
+    console.log("default!");
+
+    let hexes = this.combineHexes(this.dTokens, this.dResources);
+    let map = this.fillMapWithHexes(hexes, this.rows);
+    this.hexMap = map;
   }
 }
