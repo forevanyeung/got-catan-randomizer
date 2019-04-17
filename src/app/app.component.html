@@ -1,9 +1,9 @@
 
 
 <div id="ng-Gift">
-    <div class="hex-row" *ngFor="let row of rows">
-      <div class="hex {{ combinedEx[0][1] }}" *ngFor="let a of array(row)">
-        <div class="token">{{ combinedEx[0][0] }}</div>
+    <div class="hex-row" *ngFor="let row of combinedEx; let rowIndex = index">
+      <div class="hex {{ hex[1] }}" *ngFor="let hex of row; let hexIndex = index">
+        <div [ngClass]="'token'">{{ hex[0] }}</div>
       </div>
     </div>
 </div>
