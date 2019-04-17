@@ -7,6 +7,12 @@ import { resolveComponentResources } from '@angular/core/src/metadata/resource_l
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  hexMap = [];
+
+  ngOnInit() {
+    this.hexMap = this.defaultMap;
+  }
+
   /* 4-player */
   rows = [4,5,6,6]
   tokens = [
@@ -27,7 +33,7 @@ export class AppComponent {
     "ore"
   ]
 
-  defaultHexes = [
+  defaultMap = [
     [[5,"ore"],[6,"wool"],[5,"brick"],[8,"grain"]],
     [[6,"ore"],[4,"brick"],[9,"grain"],[10,"wool"],[11,"lumber"]],
     [[3,"wool"],[9,"lumber"],[11,"wool"],[3,"ore"],[8,"lumber"],[4,"ore"]],
@@ -51,17 +57,29 @@ export class AppComponent {
     return array;
   }
 
-  combineHexes(tokens, resoures, map) {
+  combineHexes(tokens, resoures) {
     if(tokens.length != resoures.length) { console.log("There is an issue with the two input arrays, sizes are not equal."); }
     
     let combined = [];
-    for (let i = 0; i < this.rows.length; i++) {
-
+    for (let i = 0; i < this.tokens.length; i++) {
+      combined.push([this.tokens[i],this.resources[i]]);
     }
+
+    return combined;
   }
 
-  fillMapWithHexes() {
+  fillMapWithHexes(hexes, rows) {
+    let map = [];
 
+    for(let i = 0; i < this.rows.length; i++) {
+      let tempArr = []
+      for(let ii = 0; ii < this.rows[i]; ii++) {
+        tempArr.push(hexes.shift());
+      }
+      map.push(tempArr);
+    }
+
+    return map;
   }
 
   randomize() {
@@ -69,7 +87,14 @@ export class AppComponent {
 
     this.resources = this.shuffleArray(this.resources);
     console.log(this.resources);
-    
-    this.combineHexes(this.resources, this.tokens, this.rows);
+
+    let hexes = this.combineHexes(this.tokens, this.resources);
+
+    let map = this.fillMapWithHexes(hexes, this.rows);
+    this.hexMap = map;
+  }
+
+  default() {
+    this.hexMap = this.defaultMap;
   }
 }

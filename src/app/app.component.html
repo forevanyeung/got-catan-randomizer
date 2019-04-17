@@ -12,48 +12,14 @@
     </div>
     <div>
         <button mat-flat-button color="primary" (click)="randomize()">Randomize!</button>
-        <button mat-flat-button color="accent">Default</button>
+        <button mat-flat-button color="accent" (click)="default()">Default</button>
     </div>
 </div>
 
 <div id="ng-Gift">
-    <div class="hex-row" *ngFor="let row of defaultHexes">
+    <div class="hex-row" *ngFor="let row of hexMap">
       <div class="hex {{ hex[1] }}" *ngFor="let hex of row">
         <div [ngClass]="{'token':true,'red':(hex[0] == 6 || hex[0] == 8)}">{{ hex[0] }}</div>
       </div>
-    </div>
-</div>
-
-
-
-<div id="Gift">
-    <div class="hex-row">
-        <div class="hex ore"><div class="token">5</div></div>
-        <div class="hex wool"><div class="token red">6</div></div>
-        <div class="hex brick"><div class="token">5</div></div>
-        <div class="hex grain"><div class="token red">8</div></div>
-    </div>
-    <div class="hex-row">
-        <div class="hex ore"><div class="token red">6</div></div>
-        <div class="hex brick"><div class="token">4</div></div>
-        <div class="hex grain"><div class="token">9</div></div>
-        <div class="hex wool"><div class="token">10</div></div>
-        <div class="hex lumber"><div class="token">11</div></div>
-    </div>
-    <div class="hex-row">
-        <div class="hex wool"><div class="token">3</div></div>
-        <div class="hex lumber"><div class="token">9</div></div>
-        <div class="hex wool"><div class="token">11</div></div>
-        <div class="hex ore"><div class="token">3</div></div>
-        <div class="hex lumber"><div class="token red">8</div></div>
-        <div class="hex ore"><div class="token">4</div></div>
-    </div>
-    <div class="hex-row">
-        <div class="hex grain"><div class="token">10</div></div>
-        <div class="hex lumber"><div class="token">12</div></div>
-        <div class="hex brick"><div class="token">3</div></div>
-        <div class="hex grain"><div class="token">10</div></div>
-        <div class="hex brick"><div class="token">4</div></div>
-        <div class="hex ore"><div class="token">2</div></div>
     </div>
 </div>
