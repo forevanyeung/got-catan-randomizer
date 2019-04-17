@@ -1,5 +1,15 @@
 
 
+<div id="ng-Gift">
+    <div class="hex-row" *ngFor="let row of rows">
+      <div class="hex {{ combinedEx[0][1] }}" *ngFor="let a of array(row)">
+        <div class="token">{{ combinedEx[0][0] }}</div>
+      </div>
+    </div>
+</div>
+
+
+
 <div id="Gift">
     <div class="hex-row">
         <div class="hex ore"><div class="token">5</div></div>
@@ -7,14 +17,14 @@
         <div class="hex brick"><div class="token">5</div></div>
         <div class="hex grain"><div class="token red">8</div></div>
     </div>
-    <div class="hex-row shift-1">
+    <div class="hex-row">
         <div class="hex ore"><div class="token red">6</div></div>
         <div class="hex brick"><div class="token">4</div></div>
         <div class="hex grain"><div class="token">9</div></div>
         <div class="hex wool"><div class="token">10</div></div>
         <div class="hex lumber"><div class="token">11</div></div>
     </div>
-    <div class="hex-row shift-2">
+    <div class="hex-row">
         <div class="hex wool"><div class="token">3</div></div>
         <div class="hex lumber"><div class="token">9</div></div>
         <div class="hex wool"><div class="token">11</div></div>
@@ -22,7 +32,7 @@
         <div class="hex lumber"><div class="token red">8</div></div>
         <div class="hex ore"><div class="token">4</div></div>
     </div>
-    <div class="hex-row shift-3">
+    <div class="hex-row">
         <div class="hex grain"><div class="token">10</div></div>
         <div class="hex lumber"><div class="token">12</div></div>
         <div class="hex brick"><div class="token">3</div></div>

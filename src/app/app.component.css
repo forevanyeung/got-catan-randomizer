@@ -3,9 +3,9 @@
 }
 
 .hex-row { clear: left; }
-.hex-row.shift-1 { margin-left: -53px; }
-.hex-row.shift-2 { margin-left: -106px; }
-.hex-row.shift-3 { margin-left: -159px; }
+.hex-row:nth-of-type(1) { margin-left: 159px; }
+.hex-row:nth-of-type(2) { margin-left: 106px; }
+.hex-row:nth-of-type(3) { margin-left: 53px; }
 
 .hex:before {
     content: " ";
@@ -44,6 +44,7 @@
 .hex.lumber { --terrain-hex: #517d19; }
 .hex.wool { --terrain-hex: #23C577; }
 .hex.ore { --terrain-hex: #7b6f83; }
+.hex.ice { --terrain-hex: #fcfdfe; }
 
 .token {
     font-size: 2em;
